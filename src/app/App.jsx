@@ -2,11 +2,20 @@
 import React, { useState } from 'react';
 
 import { Header } from '../app/components/Header/Header';
-import { GAME_ANSWERS } from './App.models';
 import birdsData from './birdsData';
+import { QuestionBlock } from './components/QuestionBlock/QuestionBlock';
+import { useStyles } from './components/Header/Header.styles';
 
 export const App = () => {
-  const [gameAnswerNum, setGameAnswerNum] = useState(0);
+  const [gameQuestionNum, setGameAnswerNum] = useState(0);
   const [score, setScore] = useState(55);
-  return <Header score={score} gameAnswerNum={gameAnswerNum} />;
+  const question = birdsData[0][0];
+  const styles = useStyles();
+
+  return (
+    <div className={styles.wrapper}>
+      <Header score={score} gameQuestionNum={gameQuestionNum} />
+      <QuestionBlock question={question} />
+    </div>
+  );
 };
