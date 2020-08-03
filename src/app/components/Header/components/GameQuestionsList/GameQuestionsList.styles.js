@@ -1,13 +1,13 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
-  headerAnswersList: {
+  headerQuestionsList: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '100%',
     listStyle: 'none',
   },
-  answer: {
+  question: {
     backgroundColor: 'green',
     width: '-webkit-fill-available',
   },
