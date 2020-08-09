@@ -44,6 +44,7 @@
     "webpack-dev-server": "3.11.0"
   },
   "dependencies": {
+    "green-audio-player": "1.1.2",
     "jss-plugin-nested": "10.1.1",
     "prop-types": "15.7.2",
     "react": "16.13.1",
