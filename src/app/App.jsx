@@ -5,8 +5,9 @@ import { Header } from '../app/components/Header/Header';
 import birdsData from './birdsData';
 import { QuestionBlock } from './components/QuestionBlock/QuestionBlock';
 import { AnswersVariantBlock } from './components/AnswersVariantBlock/AnswersVariantBlock';
-import { useStyles } from './components/Header/Header.styles';
 import { RADIO_BTNS_VAL } from './App.models';
+import { BirdDescriptionBlock } from './components/BirdDescriptionBlock/BirdDescriptionBlock';
+import { useStyles } from './App.styles';
 
 export const App = () => {
   const [gameQuestionNum, setGameAnswerNum] = useState(0);
@@ -17,13 +18,20 @@ export const App = () => {
   const [answersRadioBtnsVal, setAnswersRadioBtnsVAL] = useState(
     new Array(answersVariant.length).fill(RADIO_BTNS_VAL.DEFAULT),
   );
+  const [lastClickBird, setLastClickBird] = useState({});
   const styles = useStyles();
 
   const checkAnswerClick = useCallback(
     e => {
       const id = Number(e.target.dataset.id);
       const clickIndex = answersVariant.findIndex(item => item.id === id);
+      const clickBird = Object.assign({}, answersVariant[clickIndex]);
+
+      if (lastClickBird.id === clickBird.id) return;
+      setLastClickBird(clickBird);
+
       const radioBtnsVal = answersRadioBtnsVal.slice();
+
       if (id === correctAnswerOnRound.id) {
         radioBtnsVal[clickIndex] = RADIO_BTNS_VAL.CORRECT;
         setAnswersRadioBtnsVAL(radioBtnsVal);
@@ -32,7 +40,7 @@ export const App = () => {
       radioBtnsVal[clickIndex] = RADIO_BTNS_VAL.INCORRECT;
       setAnswersRadioBtnsVAL(radioBtnsVal);
     },
-    [answersRadioBtnsVal, answersVariant, correctAnswerOnRound.id],
+    [answersRadioBtnsVal, answersVariant, correctAnswerOnRound, lastClickBird],
   );
 
   return (
@@ -45,6 +53,7 @@ export const App = () => {
         question={question}
         checkAnswerClick={checkAnswerClick}
       />
+      <BirdDescriptionBlock lastClickBird={lastClickBird} />
     </div>
   );
 };
