@@ -8,6 +8,7 @@ import { AnswersVariantBlock } from './components/AnswersVariantBlock/AnswersVar
 import { RADIO_BTNS_VAL } from './App.models';
 import { BirdDescriptionBlock } from './components/BirdDescriptionBlock/BirdDescriptionBlock';
 import { useStyles } from './App.styles';
+import { NextLevelButton } from './components/NextLevelButton/NextLevelButton';
 
 export const App = () => {
   const [gameQuestionNum, setGameAnswerNum] = useState(0);
@@ -44,7 +45,7 @@ export const App = () => {
   );
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} container`}>
       <Header score={score} gameQuestionNum={gameQuestionNum} />
       <QuestionBlock question={question} />
       <AnswersVariantBlock
@@ -54,6 +55,7 @@ export const App = () => {
         checkAnswerClick={checkAnswerClick}
       />
       <BirdDescriptionBlock lastClickBird={lastClickBird} />
+      <NextLevelButton className="555" />
     </div>
   );
 };

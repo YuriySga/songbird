@@ -8,10 +8,10 @@ export const useStyles = createUseStyles({
     listStyle: 'none',
   },
   question: {
-    backgroundColor: 'green',
+    backgroundColor: '#008966',
     width: '-webkit-fill-available',
   },
   active: {
-    backgroundColor: 'greenyellow',
+    backgroundColor: '#00bc8c',
   },
 });
