@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useStyles } from './GameQuestionsList.styles';
 import { GAME_QUESTIONS } from '../../../../App.models';
 
-export const GameQuestionsList = ({ gameQuestionNum }) => {
+export const GameQuestionsList = ({ gameRound }) => {
   const styles = useStyles();
 
   return (
@@ -12,7 +12,7 @@ export const GameQuestionsList = ({ gameQuestionNum }) => {
       {GAME_QUESTIONS.map((question, questionIndex) => {
         return (
           <li
-            className={questionIndex === gameQuestionNum ? `${styles.question} + ${styles.active}` : styles.question}
+            className={questionIndex === gameRound ? `${styles.question} + ${styles.active}` : styles.question}
             key={question}
           >
             {question}
@@ -24,5 +24,5 @@ export const GameQuestionsList = ({ gameQuestionNum }) => {
 };
 
 GameQuestionsList.propTypes = {
-  gameQuestionNum: PropTypes.number.isRequired,
+  gameRound: PropTypes.number.isRequired,
 };

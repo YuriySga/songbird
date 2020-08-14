@@ -4,8 +4,9 @@ import { PropTypes } from 'prop-types';
 import blackbird from '../../../assets/images/blackbird.svg';
 import { useStyles } from '../QuestionBlock/QuestionBlock.styles';
 import * as GreenAudioPlayer from '../../../../node_modules/green-audio-player/dist/js/green-audio-player';
+import { GAME_STATUS } from '../../App.models';
 
-export const QuestionBlock = ({ question }) => {
+export const QuestionBlock = ({ questionEndAnswer, gameStatus }) => {
   const styles = useStyles();
 
   useEffect(() => {
@@ -14,17 +15,21 @@ export const QuestionBlock = ({ question }) => {
       stopOthersOnPlay: true,
       showDownloadButton: false,
     });
-  }, []);
+  }, [questionEndAnswer]);
 
   return (
     <div className={styles.questionBlock}>
-      <img className={styles.birdImage} src={blackbird} alt="bird" />
+      <img
+        className={styles.birdImage}
+        src={gameStatus === GAME_STATUS.WAITING ? blackbird : questionEndAnswer.image}
+        alt="bird"
+      />
       <ul className={styles.questionBlockList}>
-        <li>******</li>
+        <li>{gameStatus === GAME_STATUS.WAITING ? '******' : questionEndAnswer.name}</li>
         <li>
-          <div className="questionBlock" key={question.audio}>
-            <audio>
-              <source src={question.audio} type="audio/mpeg" />
+          <div className="questionBlock" key={questionEndAnswer.audio}>
+            <audio autoPlay>
+              <source src={questionEndAnswer.audio} type="audio/mpeg" allow="autoplay" />
             </audio>
           </div>
         </li>
@@ -34,5 +39,6 @@ export const QuestionBlock = ({ question }) => {
 };
 
 QuestionBlock.propTypes = {
-  question: PropTypes.object.isRequired,
+  questionEndAnswer: PropTypes.object.isRequired,
+  gameStatus: PropTypes.string.isRequired,
 };

@@ -6,7 +6,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
-  /*   font-family: 'Roboto';*/
   background-color: #222;
   color: #fff;
 }
@@ -42,9 +41,4 @@ a {
 
 #navigation::-webkit-scrollbar {
   width: 0px;
-}
-
-/* Player styles */
-.rhap_time {
-  color: #fff !important;
 }
