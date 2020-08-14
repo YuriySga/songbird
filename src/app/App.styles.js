@@ -5,5 +5,6 @@ export const useStyles = createUseStyles({
     display: 'flex',
     flexWrap: 'wrap',
     flexGrow: '1',
+    alignContent: 'baseline',
   },
 });

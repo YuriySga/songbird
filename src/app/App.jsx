@@ -8,6 +8,7 @@ import { RADIO_BTNS_VAL, GAME_STATUS, MAX_GAME_ROUNDS, MAX_TRY_NUMBER } from './
 import { BirdDescriptionBlock } from './components/BirdDescriptionBlock/BirdDescriptionBlock';
 import { useStyles } from './App.styles';
 import { NextLevelButton } from './components/NextLevelButton/NextLevelButton';
+import { EndGameBlock } from './components/EndGameBlock/EndGameBlock';
 
 export const App = () => {
   const [gameRound, setGameRound] = useState(0);
@@ -51,41 +52,47 @@ export const App = () => {
   );
 
   const clickNextRoundButton = useCallback(() => {
+    if (gameStatus === GAME_STATUS.END_GAME) {
+      startRound(0);
+      return;
+    }
     if (gameRound >= MAX_GAME_ROUNDS) {
       setGameStatus(GAME_STATUS.END_GAME);
       return;
     }
-    const newRoundNum = gameRound + 1;
-    setGameRound(newRoundNum);
-    setTryNumber(MAX_TRY_NUMBER);
-    setQuestionEndAnswer(birdsData[newRoundNum][randomInteger(0, birdsData[gameRound].length - 1)]);
-    setAnswersVariant(birdsData[newRoundNum]);
-    setGameStatus(GAME_STATUS.WAITING);
-    setAnswersRadioBtnsVAL(new Array(answersVariant.length).fill(RADIO_BTNS_VAL.DEFAULT));
-    setLastClickBird({});
-  }, [answersVariant, gameRound]);
+    startRound(gameRound + 1);
+  }, [gameRound, gameStatus, startRound]);
 
-  if (gameStatus === GAME_STATUS.END_GAME) {
-    return (
-      <div>
-        Поздравляем! <br />
-        Вы прошли викторину и набрали 13 из 30 возможных баллов
-        <button>Попробовать еще раз!</button>
-      </div>
-    );
-  }
-
+  const startRound = useCallback(
+    roundNum => {
+      roundNum === 0 && setScore(0);
+      setGameRound(roundNum);
+      setTryNumber(MAX_TRY_NUMBER);
+      setQuestionEndAnswer(birdsData[roundNum][randomInteger(0, birdsData[roundNum].length - 1)]);
+      setAnswersVariant(birdsData[roundNum]);
+      setGameStatus(GAME_STATUS.WAITING);
+      setAnswersRadioBtnsVAL(new Array(answersVariant.length).fill(RADIO_BTNS_VAL.DEFAULT));
+      setLastClickBird({});
+    },
+    [answersVariant],
+  );
   return (
     <div className={`${styles.wrapper} container`}>
       <Header score={score} gameRound={gameRound} />
-      <QuestionBlock questionEndAnswer={questionEndAnswer} gameStatus={gameStatus} />
-      <AnswersVariantBlock
-        answersVariant={answersVariant}
-        answersRadioBtnsVal={answersRadioBtnsVal}
-        questionEndAnswer={questionEndAnswer}
-        checkAnswerClick={checkAnswerClick}
-      />
-      <BirdDescriptionBlock lastClickBird={lastClickBird} />
+      {gameStatus === GAME_STATUS.END_GAME ? (
+        <EndGameBlock score={score} />
+      ) : (
+        <>
+          <QuestionBlock questionEndAnswer={questionEndAnswer} gameStatus={gameStatus} />
+          <AnswersVariantBlock
+            answersVariant={answersVariant}
+            answersRadioBtnsVal={answersRadioBtnsVal}
+            questionEndAnswer={questionEndAnswer}
+            checkAnswerClick={checkAnswerClick}
+          />
+          <BirdDescriptionBlock lastClickBird={lastClickBird} />
+        </>
+      )}
       <NextLevelButton gameStatus={gameStatus} clickNextRoundButton={clickNextRoundButton} />
     </div>
   );
