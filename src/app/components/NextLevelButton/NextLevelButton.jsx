@@ -16,7 +16,7 @@ export const NextLevelButton = ({ gameStatus, clickNextRoundButton }) => {
       type={'button'}
       className={`btn btn-primary ${styles.nextLevelButton}`}
     >
-      NextLevel
+      {gameStatus === GAME_STATUS.END_GAME ? 'Попробовать еще раз!' : 'NextLevel'}
     </button>
   );
 };

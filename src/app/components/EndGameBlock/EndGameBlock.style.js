@@ -1,8 +1,10 @@
 import { createUseStyles } from 'react-jss';
 
 export const useStyles = createUseStyles({
-  restartButton: {
+  endGameBlock: {
     width: '100%',
-    margin: '20px 0 20px 0',
+    backgroundColor: '#303030',
+    marginBottom: '25px',
+    borderRadius: '4px',
   },
 });
