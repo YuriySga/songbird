@@ -5,18 +5,18 @@ import { GameQuestionsList } from './components/GameQuestionsList/GameAnswersLis
 import { Score } from './components/Score/Score';
 import { useStyles } from './Header.styles';
 
-export const Header = ({ score, gameQuestionNum }) => {
+export const Header = ({ score, gameRound }) => {
   const styles = useStyles();
   return (
     <div className={styles.header}>
       <div className="logo">SONGBIRD</div>
       <Score score={score} />
-      <GameQuestionsList gameQuestionNum={gameQuestionNum} />
+      <GameQuestionsList gameRound={gameRound} />
     </div>
   );
 };
 
 Header.propTypes = {
   score: PropTypes.number.isRequired,
-  gameQuestionNum: PropTypes.number.isRequired,
+  gameRound: PropTypes.number.isRequired,
 };
