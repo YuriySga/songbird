@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 
 import { Header } from '../app/components/Header/Header';
 import birdsData from './birdsData';
@@ -6,9 +6,11 @@ import { QuestionBlock } from './components/QuestionBlock/QuestionBlock';
 import { AnswersVariantBlock } from './components/AnswersVariantBlock/AnswersVariantBlock';
 import { RADIO_BTNS_VAL, GAME_STATUS, MAX_GAME_ROUNDS, MAX_TRY_NUMBER, MAX_SCORE } from './App.models';
 import { BirdDescriptionBlock } from './components/BirdDescriptionBlock/BirdDescriptionBlock';
-import { useStyles } from './App.styles';
 import { NextLevelButton } from './components/NextLevelButton/NextLevelButton';
 import { EndGameBlock } from './components/EndGameBlock/EndGameBlock';
+import errorSound from '../assets/audio/error.mp3';
+import winSound from '../assets/audio/win.mp3';
+import { useStyles } from './App.styles';
 
 export const App = () => {
   const [gameRound, setGameRound] = useState(0);
@@ -23,6 +25,7 @@ export const App = () => {
     new Array(answersVariant.length).fill(RADIO_BTNS_VAL.DEFAULT),
   );
   const [lastClickBird, setLastClickBird] = useState({});
+  const audioElement = useRef(null);
   const styles = useStyles();
 
   const checkAnswerClick = useCallback(
@@ -38,12 +41,16 @@ export const App = () => {
       const radioBtnsVal = answersRadioBtnsVal.slice();
       const userTry = tryNumber > 0 ? tryNumber - 1 : tryNumber;
       if (id === questionEndAnswer.id) {
+        audioElement.current = new Audio(winSound);
+        audioElement.current.play();
         radioBtnsVal[clickIndex] = RADIO_BTNS_VAL.CORRECT;
         setAnswersRadioBtnsVAL(radioBtnsVal);
         setGameStatus(GAME_STATUS.ANSWER_CORRECT);
         setScore(score + userTry);
         return;
       }
+      audioElement.current = new Audio(errorSound);
+      audioElement.current.play();
       radioBtnsVal[clickIndex] = RADIO_BTNS_VAL.INCORRECT;
       setAnswersRadioBtnsVAL(radioBtnsVal);
       setTryNumber(userTry);
