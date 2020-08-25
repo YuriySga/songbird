@@ -7,4 +7,9 @@ export const useStyles = createUseStyles({
     flexGrow: '1',
     alignContent: 'baseline',
   },
+  answersEndDescriptionBlock: {
+    width: '100%',
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
 });

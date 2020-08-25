@@ -24,8 +24,11 @@ export const GAME_STATUS = {
   ANSWER_CORRECT: 'answer correct',
   ANSWER_INCORRECT: 'answer incorrect',
   END_GAME: 'end game',
+  WIN_END_GAME: 'win end game',
 };
 
 export const MAX_GAME_ROUNDS = [5];
 
 export const MAX_TRY_NUMBER = 6;
+
+export const MAX_SCORE = GAME_QUESTIONS.length * (MAX_TRY_NUMBER - 1);

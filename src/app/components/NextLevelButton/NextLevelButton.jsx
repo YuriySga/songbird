@@ -24,4 +24,5 @@ export const NextLevelButton = ({ gameStatus, clickNextRoundButton }) => {
 NextLevelButton.propTypes = {
   gameStatus: PropTypes.string.isRequired,
   clickNextRoundButton: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
 };

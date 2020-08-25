@@ -5,8 +5,14 @@ export const useStyles = createUseStyles({
     display: 'flex',
     flexWrap: 'wrap',
     width: '100%',
-    height: '100px',
     justifyContent: 'space-between',
-    backgroundColor: '#303030',
+    alignItems: 'center',
+  },
+  logo: {
+    fontFamily: 'Gloria Hallelujah',
+    fontSize: '41px',
+    '&>span': {
+      color: '#009c75',
+    },
   },
 });

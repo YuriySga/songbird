@@ -11,29 +11,37 @@ export const QuestionBlock = ({ questionEndAnswer, gameStatus }) => {
 
   useEffect(() => {
     GreenAudioPlayer.init({
-      selector: '.questionBlock',
+      selector: '.questionPlayer',
       stopOthersOnPlay: true,
       showDownloadButton: false,
     });
   }, [questionEndAnswer]);
 
   return (
-    <div className={styles.questionBlock}>
-      <img
-        className={styles.birdImage}
-        src={gameStatus === GAME_STATUS.WAITING ? blackbird : questionEndAnswer.image}
-        alt="bird"
-      />
-      <ul className={styles.questionBlockList}>
-        <li>{gameStatus === GAME_STATUS.WAITING ? '******' : questionEndAnswer.name}</li>
-        <li>
-          <div className="questionBlock" key={questionEndAnswer.audio}>
-            <audio autoPlay>
-              <source src={questionEndAnswer.audio} type="audio/mpeg" allow="autoplay" />
-            </audio>
-          </div>
-        </li>
-      </ul>
+    <div className="container">
+      <div className={`row ${styles.questionBlock}`}>
+        <div className={'col-md-4 col-lg-3 pl-0 text-center text-md-left'}>
+          <img
+            className={styles.birdImage}
+            src={gameStatus === GAME_STATUS.WAITING ? blackbird : questionEndAnswer.image}
+            alt="bird"
+          />
+        </div>
+        <div className={'col-md-8 col-lg-9'}>
+          <ul className={styles.questionBlockList}>
+            <li className={styles.questionBlockListName}>
+              {gameStatus === GAME_STATUS.WAITING ? '******' : questionEndAnswer.name}
+            </li>
+            <li>
+              <div className={`${styles.questionBlockPlayer} questionPlayer`} key={questionEndAnswer.audio}>
+                <audio>
+                  <source src={questionEndAnswer.audio} type="audio/mpeg" allow="autoplay" />
+                </audio>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

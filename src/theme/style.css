@@ -8,6 +8,7 @@ body {
   min-height: 100%;
   background-color: #222;
   color: #fff;
+  overflow-x: hidden;
 }
 
 * {
@@ -41,4 +42,26 @@ a {
 
 #navigation::-webkit-scrollbar {
   width: 0px;
+}
+
+/*Green Player style*/
+
+.green-audio-player {
+  min-width: unset !important;
+}
+
+.play-pause-btn__icon {
+  fill: #44bfa3;
+}
+
+.controls__current-time {
+  color: #d3d3d3;
+}
+
+.controls__total-time {
+  color: #d3d3d3;
+}
+
+.volume {
+  display: none;
 }
