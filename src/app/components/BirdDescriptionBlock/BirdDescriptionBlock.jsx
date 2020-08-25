@@ -11,7 +11,7 @@ export const BirdDescriptionBlock = ({ lastClickBird }) => {
 
   useEffect(() => {
     GreenAudioPlayer.init({
-      selector: '.birdDescriptionBlock',
+      selector: '.birdDescriptionPlayer',
       stopOthersOnPlay: true,
       showDownloadButton: false,
     });
@@ -29,20 +29,22 @@ export const BirdDescriptionBlock = ({ lastClickBird }) => {
 
   return (
     <div className={styles.birdDescriptionBlock}>
-      <div className={styles.birdDescriptionImgWrapper}>
-        <img className={styles.birdDescriptionImg} src={lastClickBird.image} />
+      <div className={styles.birdDescriptionImgEndListWrapper}>
+        <div className={styles.birdDescriptionBlockImgWrapper}>
+          <img className={styles.birdDescriptionImg} src={lastClickBird.image} />
+        </div>
+        <ul className={styles.birdDescriptionList}>
+          <li className={styles.birdDescriptionName}>{lastClickBird.name}</li>
+          <li>{lastClickBird.species}</li>
+          <li className={styles.descriptionPlayerWrapper}>
+            <div className={`birdDescriptionPlayer ${styles.descriptionPlayer}`} key={lastClickBird.audio}>
+              <audio>
+                <source src={lastClickBird.audio} type="audio/mpeg" />
+              </audio>
+            </div>
+          </li>
+        </ul>
       </div>
-      <ul className={styles.birdDescriptionList}>
-        <li>{lastClickBird.name}</li>
-        <li>{lastClickBird.species}</li>
-        <li>
-          <div className="birdDescriptionBlock" key={lastClickBird.audio}>
-            <audio>
-              <source src={lastClickBird.audio} type="audio/mpeg" />
-            </audio>
-          </div>
-        </li>
-      </ul>
       <p className={styles.birdDescriptionText}>{lastClickBird.description}</p>
     </div>
   );

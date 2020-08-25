@@ -8,14 +8,13 @@ export const GameQuestionsList = ({ gameRound }) => {
   const styles = useStyles();
 
   return (
-    <ul className={styles.headerQuestionsList}>
+    <ul className={`pagination ${styles.headerQuestionsList}`}>
       {GAME_QUESTIONS.map((question, questionIndex) => {
         return (
-          <li
-            className={questionIndex === gameRound ? `${styles.question} + ${styles.active}` : styles.question}
-            key={question}
-          >
-            {question}
+          <li className={`page-item ${styles.question}`} key={question}>
+            <a className={`page-link ${styles.questionLink} ${questionIndex === gameRound && styles.active}`} href="#">
+              {question}
+            </a>
           </li>
         );
       })}

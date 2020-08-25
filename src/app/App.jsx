@@ -4,7 +4,7 @@ import { Header } from '../app/components/Header/Header';
 import birdsData from './birdsData';
 import { QuestionBlock } from './components/QuestionBlock/QuestionBlock';
 import { AnswersVariantBlock } from './components/AnswersVariantBlock/AnswersVariantBlock';
-import { RADIO_BTNS_VAL, GAME_STATUS, MAX_GAME_ROUNDS, MAX_TRY_NUMBER } from './App.models';
+import { RADIO_BTNS_VAL, GAME_STATUS, MAX_GAME_ROUNDS, MAX_TRY_NUMBER, MAX_SCORE } from './App.models';
 import { BirdDescriptionBlock } from './components/BirdDescriptionBlock/BirdDescriptionBlock';
 import { useStyles } from './App.styles';
 import { NextLevelButton } from './components/NextLevelButton/NextLevelButton';
@@ -76,6 +76,7 @@ export const App = () => {
     },
     [answersVariant],
   );
+
   return (
     <div className={`${styles.wrapper} container`}>
       <Header score={score} gameRound={gameRound} />
@@ -84,16 +85,26 @@ export const App = () => {
       ) : (
         <>
           <QuestionBlock questionEndAnswer={questionEndAnswer} gameStatus={gameStatus} />
-          <AnswersVariantBlock
-            answersVariant={answersVariant}
-            answersRadioBtnsVal={answersRadioBtnsVal}
-            questionEndAnswer={questionEndAnswer}
-            checkAnswerClick={checkAnswerClick}
-          />
-          <BirdDescriptionBlock lastClickBird={lastClickBird} />
+          <div className={'row'}>
+            <div className={'col-md-6 mb-4'}>
+              <AnswersVariantBlock
+                answersVariant={answersVariant}
+                answersRadioBtnsVal={answersRadioBtnsVal}
+                questionEndAnswer={questionEndAnswer}
+                checkAnswerClick={checkAnswerClick}
+              />
+            </div>
+            <div className={'col-md-6 mb-4'}>
+              <BirdDescriptionBlock lastClickBird={lastClickBird} />
+            </div>
+          </div>
         </>
       )}
-      <NextLevelButton gameStatus={gameStatus} clickNextRoundButton={clickNextRoundButton} />
+      {gameStatus === GAME_STATUS.END_GAME && score >= MAX_SCORE ? (
+        <></>
+      ) : (
+        <NextLevelButton gameStatus={gameStatus} clickNextRoundButton={clickNextRoundButton} score={score} />
+      )}
     </div>
   );
 };

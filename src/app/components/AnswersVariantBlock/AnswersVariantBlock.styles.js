@@ -3,7 +3,7 @@ import { RADIO_BTNS_VAL, RADIO_BTNS_COLORS } from '../../App.models';
 
 export const useStyles = createUseStyles({
   answersList: {
-    width: '50%',
+    marginBottom: '0px',
     backgroundColor: '#303030',
     borderRadius: '4px',
     '& :first-child': {
