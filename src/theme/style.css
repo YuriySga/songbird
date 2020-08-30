@@ -1,0 +1,63 @@
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  background-color: #222;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  outline: none;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  display: block;
+  width: 30px;
+  height: 25px;
+  opacity: 1;
+}
+
+input[type='number']:focus {
+  outline-width: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+#root {
+  display: flex;
+  flex-grow: 1;
+}
+
+#navigation::-webkit-scrollbar {
+  width: 0px;
+}
+
+/*Green Player style*/
+
+.green-audio-player {
+  min-width: unset !important;
+}
+
+.play-pause-btn__icon {
+  fill: #44bfa3;
+}
+
+.controls__current-time {
+  color: #d3d3d3;
+}
+
+.controls__total-time {
+  color: #d3d3d3;
+}
