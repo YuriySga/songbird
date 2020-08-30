@@ -6,6 +6,7 @@ export const useStyles = createUseStyles({
     marginBottom: '0px',
     backgroundColor: '#303030',
     borderRadius: '4px',
+    userSelect: 'none',
     '& :first-child': {
       borderTopLeftRadius: '4px',
       borderTopRightRadius: '4px',

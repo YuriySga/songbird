@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 
 import { Header } from '../app/components/Header/Header';
 import birdsData from './birdsData';
@@ -83,6 +83,9 @@ export const App = () => {
     },
     [answersVariant],
   );
+
+  // eslint-disable-next-line no-console
+  useEffect(() => console.log('Верный ответ: ' + questionEndAnswer.name), [questionEndAnswer]);
 
   return (
     <div className={`${styles.wrapper} container`}>

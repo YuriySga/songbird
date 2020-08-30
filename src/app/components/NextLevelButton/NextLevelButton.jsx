@@ -6,7 +6,6 @@ import { GAME_STATUS } from '../../App.models';
 
 export const NextLevelButton = ({ gameStatus, clickNextRoundButton }) => {
   const styles = useStyles();
-
   const click = useCallback(() => clickNextRoundButton(), [clickNextRoundButton]);
 
   return (
