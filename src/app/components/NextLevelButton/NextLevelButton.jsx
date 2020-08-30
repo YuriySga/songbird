@@ -5,7 +5,7 @@ import { useStyles } from './NextLevelButton.styles';
 import { GAME_STATUS } from '../../App.models';
 
 export const NextLevelButton = ({ gameStatus, clickNextRoundButton }) => {
-  const styles = useStyles();
+  const styles = useStyles({ gameStatus });
   const click = useCallback(() => clickNextRoundButton(), [clickNextRoundButton]);
 
   return (

@@ -6,6 +6,7 @@ Before coding be sure that you've installed following plugins for your IDE:
 2. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 3. [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 4. [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+   fix
 
 ## Git
 
